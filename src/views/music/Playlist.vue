@@ -3,14 +3,18 @@
     <div class="top-wrap">
       <div class="img-wrap">
         <!-- 封面 -->
-        <img :src="playlist.coverImgUrl" alt="" />
+        <img :src="playlist.coverImgUrl"
+             alt="" />
       </div>
       <div class="info-wrap">
         <!-- 名字 -->
-        <p class="title" style="font-weight: bold;color: lightpink">{{ playlist.name }}</p>
+        <p class="title"
+           style="font-weight: bold;color: lightpink">{{ playlist.name }}</p>
         <div class="author-wrap">
           <!-- 头像 -->
-          <img class="avatar" :src="playlist.creator.avatarUrl" alt="" />
+          <img class="avatar"
+               :src="playlist.creator.avatarUrl"
+               alt="" />
           <span class="name">{{ playlist.creator.nickname }}/</span>
           <span class="time">{{ playlist.createTime }} 创建</span>
         </div>
@@ -22,7 +26,8 @@
           <span class="title">标签:</span>
           <!-- 分类标签 -->
           <ul>
-            <li v-for="(item, index) in playlist.tags" :key="index">
+            <li v-for="(item, index) in playlist.tags"
+                :key="index">
               {{ item }}
             </li>
           </ul>
@@ -37,54 +42,64 @@
       </div>
     </div>
     <el-tabs v-model="activeIndex">
-      <el-tab-pane label="歌曲列表" name="1">
+      <el-tab-pane label="歌曲列表"
+                   name="1">
         <table class="el-table playlit-table">
           <thead>
-          <th></th>
-          <th></th>
-          <th>音乐标题</th>
-          <th>歌手</th>
-          <th>专辑</th>
-          <th>时长</th>
+            <th></th>
+            <th></th>
+            <th>音乐标题</th>
+            <th>歌手</th>
+            <th>专辑</th>
+            <th>时长</th>
           </thead>
           <tbody>
-          <tr class="el-table__row" v-for="(item, index) in playlist.tracks" :key="index">
-            <td>{{index+1}}</td>
-            <td>
-              <div class="img-wrap">
-                <img v-bind:src="item.al.picUrl" alt="" />
-                <span class="iconfont icon-play el-icon-video-play" @click="playMusic(item.id)"></span>
-              </div>
-            </td>
-            <td>
-              <div class="song-wrap">
-                <div class="name-wrap">
-                  <span>{{item.name}}</span>
-                  <span class="iconfont icon-mv el-icon-video-play"></span>
+            <tr class="el-table__row"
+                v-for="(item, index) in playlist.tracks"
+                :key="index">
+              <td>{{index+1}}</td>
+              <td>
+                <div class="img-wrap">
+                  <img v-bind:src="item.al.picUrl"
+                       alt="" />
+                  <span class="iconfont icon-play el-icon-video-play"
+                        @click="playMusic(item.id)"></span>
                 </div>
-                <span>{{item.al.name}}</span>
-              </div>
-            </td>
-            <td>{{item.ar[0].name}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.dt}}</td>
-          </tr>
+              </td>
+              <td>
+                <div class="song-wrap">
+                  <div class="name-wrap">
+                    <span>{{item.name}}</span>
+                    <span class="iconfont icon-mv el-icon-video-play"></span>
+                  </div>
+                  <span>{{item.al.name}}</span>
+                </div>
+              </td>
+              <td>{{item.ar[0].name}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.dt}}</td>
+            </tr>
           </tbody>
         </table>
       </el-tab-pane>
-      <el-tab-pane label="评论(n)" name="2">
+      <el-tab-pane label="评论(n)"
+                   name="2">
         <!-- 精彩评论 -->
         <div class="comment-wrap">
           <p class="title">
             精彩评论
-            <span class="number" style="color: #ae81ff;font-weight: bold">({{ hotCount }})</span>
+            <span class="number"
+                  style="color: #ae81ff;font-weight: bold">({{ hotCount }})</span>
           </p>
           <div class="comments-wrap">
             <!-- 评论 -->
-            <div v-for="(item, index) in hotComment" :key="index" class="item">
+            <div v-for="(item, index) in hotComment"
+                 :key="index"
+                 class="item">
               <div class="icon-wrap">
                 <!-- 头像 -->
-                <img v-bind:src="item.user.avatarUrl" alt="" />
+                <img v-bind:src="item.user.avatarUrl"
+                     alt="" />
               </div>
               <div class="content-wrap">
                 <div class="content">
@@ -93,10 +108,9 @@
                   <span class="comment">{{ item.content }}</span>
                 </div>
                 <!-- 评论的回复 -->
-                <div class="re-content" v-if="item.beReplied.length != 0">
-                  <span class="name"
-                  >{{ item.beReplied[0].user.nickname }}：</span
-                  >
+                <div class="re-content"
+                     v-if="item.beReplied.length != 0">
+                  <span class="name">{{ item.beReplied[0].user.nickname }}：</span>
                   <span class="comment">{{ item.beReplied[0].content }}</span>
                 </div>
                 <div class="date">{{new Date(item.time)}}</div>
@@ -108,19 +122,24 @@
         <div class="comment-wrap">
           <p class="title">
             最新评论
-            <span class="number" style="color: #ae81ff;font-weight: bold">( {{total}} )</span>
+            <span class="number"
+                  style="color: #ae81ff;font-weight: bold">( {{total}} )</span>
           </p>
           <div class="comments-wrap">
-            <div class="item" v-for="(item,index) in comments" :key="index">
+            <div class="item"
+                 v-for="(item,index) in comments"
+                 :key="index">
               <div class="icon-wrap">
-                <img :src="item.user.avatarUrl" alt="" />
+                <img :src="item.user.avatarUrl"
+                     alt="" />
               </div>
               <div class="content-wrap">
                 <div class="content">
                   <span class="name">{{item.user.nickname}}：</span>
                   <span class="comment">{{ item.content }}</span>
                 </div>
-                <div class="re-content" v-if="item.beReplied.length!=0">
+                <div class="re-content"
+                     v-if="item.beReplied.length!=0">
                   <span class="name">{{ item.beReplied[0].user.nickname }}：</span>
                   <span class="comment">{{ item.beReplied[0].content }}</span>
                 </div>
@@ -130,13 +149,11 @@
           </div>
         </div>
         <!-- 分页器 -->
-        <el-pagination
-          @current-change="handleCurrentChange"
-          background
-          layout="prev, pager, next"
-          :total="total"
-          :current-page="page"
-        ></el-pagination>
+        <el-pagination @current-change="handleCurrentChange"
+                       background
+                       layout="prev, pager, next"
+                       :total="total"
+                       :current-page="page"></el-pagination>
         <br>
         <br>
       </el-tab-pane>
@@ -157,7 +174,31 @@ export default {
       page: 1,
       // 歌单详情数据
       // tracks 歌曲列表
-      playlist: {},
+      playlist: {
+        audio: [
+          {
+            name: '东西（Cover：林俊呈）',
+            artist: '纳豆',
+            url: 'https://cdn.moefe.org/music/mp3/thing.mp3',
+            cover: 'https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300', // prettier-ignore
+            lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc'
+          },
+          {
+            name: '响喜乱舞（Cover：MARiA）',
+            artist: '泠鸢yousa',
+            url: 'https://cdn.moefe.org/music/mp3/kyoukiranbu.mp3',
+            cover: 'https://p1.music.126.net/AUGVPQ_rVrngDH9ocQrn3Q==/109951163613037822.jpg?param=300y300', // prettier-ignore
+            lrc: 'https://cdn.moefe.org/music/lrc/kyoukiranbu.lrc'
+          },
+          {
+            name: '啵唧',
+            artist: 'Hanser',
+            url: 'https://cdn.moefe.org/music/mp3/kiss.mp3',
+            cover: 'https://p1.music.126.net/K0-IPcIQ9QFvA0jXTBqoWQ==/109951163636756693.jpg?param=300y300', // prettier-ignore
+            lrc: 'https://cdn.moefe.org/music/lrc/kiss.lrc'
+          }
+        ]
+      },
       // 热门评论
       hotComment: [],
       // 热门评论的个数
@@ -266,5 +307,5 @@ export default {
 </script>
 
 <style scoped>
-  @import "../../assets/music/index.css";
+@import "../../assets/music/index.css";
 </style>

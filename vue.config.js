@@ -20,6 +20,7 @@ module.exports = {
       },
       '/server': {
         target: 'http://139.196.193.100:9002/',
+        // target: 'http://127.0.0.1:9002/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
@@ -28,38 +29,39 @@ module.exports = {
       },
       '/link': {
         target: 'http://139.196.193.100:9003/',
+        // target: 'http://127.0.0.1:9003/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
           '^/link': ''
         }
-      },
-      '/crawler': {
-        target: 'http://127.0.0.1:9005',
-        changeOrigin: true,
-        secure: false,
-        pathRewrite: {
-          '^/crawler': ''
-        }
-      },
-      '/AI': {
-        target: 'http://127.0.0.1:9007',
-        changeOrigin: true,
-        secure: false,
-        pathRewrite: {
-          '^/AI': ''
-        }
-      },
-      '/encrypt': {
-        target: 'http://127.0.0.1:9001',
-        changeOrigin: true,
-        secure: false,
-        pathRewrite: {
-          '^/encrypt': ''
-        }
-      },
+      }
+      // '/crawler': {
+      //   target: 'http://127.0.0.1:9005',
+      //   changeOrigin: true,
+      //   secure: false,
+      //   pathRewrite: {
+      //     '^/crawler': ''
+      //   }
+      // },
+      // '/AI': {
+      //   target: 'http://127.0.0.1:9007',
+      //   changeOrigin: true,
+      //   secure: false,
+      //   pathRewrite: {
+      //     '^/AI': ''
+      //   }
+      // },
+      // '/encrypt': {
+      //   target: 'http://127.0.0.1:9001',
+      //   changeOrigin: true,
+      //   secure: false,
+      //   pathRewrite: {
+      //     '^/encrypt': ''
+      //   }
+      // }
     },
-    before: app => {}
+    before: app => { }
   },
   chainWebpack: config => {
     // 发布模式

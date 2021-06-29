@@ -1,78 +1,108 @@
 <template>
-    <div class="login_container">
-      <!-- banner -->
-      <div class="archive-banner banner">
-        <h1 class="banner-title">归档</h1>
-      </div>
-      <div class="login_box">
+  <div class="login_container">
+    <!-- banner -->
+    <div class="archive-banner banner">
+      <!-- <h1 class="banner-title">归档</h1> -->
+    </div>
+    <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../../assets/logo.png" alt="">
+        <img src="../../assets/logo.png"
+             alt="">
       </div>
-        <!-- 登录表单区域 -->
-        <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
-          <!-- 用户名 -->
-          <el-form-item prop="username">
-            <el-input v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="el-icon-user-solid"></el-input>
-          </el-form-item>
-          <!-- 密码 -->
-          <el-form-item prop="password">
-            <el-input v-model="loginForm.password" placeholder="请输入密码" prefix-icon="el-icon-moon-night" type="password"></el-input>
-          </el-form-item>
-          <el-form-item prop="code">
-            <el-input v-model="loginForm.code" placeholder="请输入验证码" prefix-icon="el-icon-picture-outline-round" style="width: 50%"></el-input>
-            <img v-bind:src="verifyCode" @click="getVerifyCode()" width="130px" height="35px" style="float: right;cursor:pointer;" />
-          </el-form-item>
-          <!-- 按钮区域 -->
-          <el-form-item class="btns">
-            <el-button type="success" @click="handleCreate">注册</el-button>
-            <el-button type="primary" @click="login">登录</el-button>
-            <el-button type="info" @click="resetLoginForm">重置</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-      <!-- 注册弹层-->
-      <div class="add-form">
-        <el-dialog title="注册用户" :visible.sync="dialogFormVisible">
-          <el-form ref="registForm" :model="formData" :rules="loginFormRules" label-position="right"
-                   label-width="100px">
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="用户名" prop="username">
-                  <el-input label="请输入用户名" v-model="formData.username"/>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="密码" prop="password">
-                  <el-input v-model="formData.password"/>
-                </el-form-item>
-              </el-col>
-            </el-row>
+      <!-- 登录表单区域 -->
+      <el-form ref="loginFormRef"
+               :model="loginForm"
+               :rules="loginFormRules"
+               label-width="0px"
+               class="login_form">
+        <!-- 用户名 -->
+        <el-form-item prop="username">
+          <el-input v-model="loginForm.username"
+                    placeholder="请输入用户名"
+                    prefix-icon="el-icon-user-solid"></el-input>
+        </el-form-item>
+        <!-- 密码 -->
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password"
+                    placeholder="请输入密码"
+                    prefix-icon="el-icon-moon-night"
+                    type="password"></el-input>
+        </el-form-item>
+        <el-form-item prop="code">
+          <el-input v-model="loginForm.code"
+                    placeholder="请输入验证码"
+                    prefix-icon="el-icon-picture-outline-round"
+                    style="width: 50%"></el-input>
+          <img v-bind:src="verifyCode"
+               @click="getVerifyCode()"
+               width="130px"
+               height="35px"
+               style="float: right;cursor:pointer;" />
+        </el-form-item>
+        <!-- 按钮区域 -->
+        <el-form-item class="btns">
+          <el-button type="success"
+                     @click="handleCreate">注册</el-button>
+          <el-button type="primary"
+                     @click="login">登录</el-button>
+          <el-button type="info"
+                     @click="resetLoginForm">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <!-- 注册弹层-->
+    <div class="add-form">
+      <el-dialog title="注册用户"
+                 :visible.sync="dialogFormVisible">
+        <el-form ref="registForm"
+                 :model="formData"
+                 :rules="loginFormRules"
+                 label-position="right"
+                 label-width="100px">
           <el-row>
             <el-col :span="12">
-              <el-form-item label="昵称" prop="nickname">
-                <el-input v-model="formData.nickname"/>
+              <el-form-item label="用户名"
+                            prop="username">
+                <el-input label="请输入用户名"
+                          v-model="formData.username" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="密码"
+                            prop="password">
+                <el-input v-model="formData.password" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="昵称"
+                            prop="nickname">
+                <el-input v-model="formData.nickname" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="邮箱">
-                <el-input v-model="formData.email"/>
+                <el-input v-model="formData.email" />
               </el-form-item>
             </el-col>
           </el-row>
-            <el-col :span="24">
-              <el-form-item label="头像地址">
-                <el-input v-model="formData.avatar"/>
-              </el-form-item>
-            </el-col>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取消</el-button>
-            <el-button type="primary" @click="regist()">确定</el-button>
-          </div>
-        </el-dialog>
-      </div>
+          <el-col :span="24">
+            <el-form-item label="头像地址">
+              <el-input v-model="formData.avatar" />
+            </el-form-item>
+          </el-col>
+        </el-form>
+        <div slot="footer"
+             class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取消</el-button>
+          <el-button type="primary"
+                     @click="regist()">确定</el-button>
+        </div>
+      </el-dialog>
     </div>
+  </div>
 </template>
 
 <script>
@@ -200,66 +230,67 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .banner-title {
-    animation: title-scale 1s;
-    position: absolute;
-    top: 25rem;
-    padding: 0 0.5rem;
-    width: 100%;
-    font-size: 2.5rem;
-    text-align: center;
-    color: #eee;
-  }
-  .archive-banner {
-    height: 110vh;
-    background: url(http://r.photo.store.qq.com/psc?/V53KcXfb1umonn4HbITu3rINxs43TczD/45NBuzDIW489QBoVep5mccYPEGHYJF8vf05Y7Jp3Sq4PYCDwfPyvkq4c5VlhffPJbHw4QoE1dsiS8OtN2H5XvhPtg1C1JZwAOMeqYFSoGDg!/r) center center /
-    cover no-repeat;
-    background-color: #49b1f5;
-  }
-  .login_container {
-    background-color: #2b4b6b;
-    height: 100%;
-  }
-  .login_box {
-    width: 450px;
-    height: 360px;
-    background-color: #fff;
-    border-radius: 3px;
+.banner-title {
+  animation: title-scale 1s;
+  position: absolute;
+  top: 25rem;
+  padding: 0 0.5rem;
+  width: 100%;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #eee;
+}
+.archive-banner {
+  height: 110vh;
+  background: url(https://w.wallhaven.cc/full/0p/wallhaven-0pk2yp.jpg) center
+    center / cover no-repeat;
+  background-color: #49b1f5;
+}
+.login_container {
+  background-color: #2b4b6b;
+  height: 100%;
+}
+.login_box {
+  width: 450px;
+  height: 360px;
+  background-color: #fff;
+  opacity: 0.9;
+  border-radius: 3px;
+  position: absolute;
+  left: 70%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .avatar_box {
+    height: 130px;
+    width: 130px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 0 10px #ddd;
     position: absolute;
     left: 50%;
-    top: 50%;
     transform: translate(-50%, -50%);
-
-    .avatar_box {
-      height: 130px;
-      width: 130px;
-      border: 1px solid #eee;
+    background-color: #fff;
+    img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      padding: 10px;
-      box-shadow: 0 0 10px #ddd;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background-color: #eee;
-      }
+      background-color: #eee;
     }
   }
+}
 
-  .login_form {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
+.login_form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-  }
+.btns {
+  display: flex;
+  justify-content: flex-end;
+}
 </style>
