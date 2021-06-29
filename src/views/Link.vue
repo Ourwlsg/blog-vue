@@ -41,9 +41,9 @@
           友链信息展示需要，你的信息格式要包含：名称、介绍、链接、头像，博主经过筛选后，会在下方以卡片的形式展示出来
         </blockquote>
         <br>
-        <template v-for="(item,index) in dataList">
+        <template v-for="item in dataList">
           <el-col style="width: 400px;margin-top: 30px!important;top: 15px !important;"
-                  v-if="index%2===0"
+                  v-if="true"
                   v-bind:key="item.linkId">
             <a v-bind:href="item.blogLink"
                target="_blank">
@@ -67,7 +67,6 @@
               </div>
             </a>
           </el-col>
-
         </template>
         <br>
         <br>
