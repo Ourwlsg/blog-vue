@@ -41,7 +41,6 @@ export default {
       this.path = to.path
     }
   }
-  
 }
 </script>
 <style>
