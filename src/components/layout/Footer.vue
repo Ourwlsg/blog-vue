@@ -6,7 +6,7 @@
       <div>&copy; 2021 - {{ new Date().getFullYear() }} By Zhucc</div>
       <a href="http://beian.miit.gov.cn/"
          target="_blank">
-        粤ICP备2021?号
+        鄂ICP备2021011656号
       </a>
     </div>
   </el-footer>
